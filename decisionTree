@@ -1,0 +1,21 @@
+digraph Tree {
+node [shape=box, style="filled", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="bw_iat_min <= 0.25\nsamples = 100.0%\nvalue = [0.325, 0.375, 0.2, 0.1]", fillcolor="#f1fdf0"] ;
+1 [label="fl_dur <= 0.163\nsamples = 94.1%\nvalue = [0.347, 0.4, 0.147, 0.107]", fillcolor="#f0fdef"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="l_fw_pkt <= 0.345\nsamples = 90.2%\nvalue = [0.366, 0.408, 0.155, 0.07]", fillcolor="#f3fdf2"] ;
+1 -> 2 ;
+3 [label="(...)", fillcolor="#C0C0C0"] ;
+2 -> 3 ;
+10 [label="(...)", fillcolor="#C0C0C0"] ;
+2 -> 10 ;
+25 [label="pkt_len_max <= 0.078\nsamples = 3.9%\nvalue = [0.0, 0.25, 0.0, 0.75]", fillcolor="#e47bee"] ;
+1 -> 25 ;
+26 [label="(...)", fillcolor="#C0C0C0"] ;
+25 -> 26 ;
+27 [label="(...)", fillcolor="#C0C0C0"] ;
+25 -> 27 ;
+28 [label="samples = 5.9%\nvalue = [0.0, 0.0, 1.0, 0.0]", fillcolor="#399de5"] ;
+0 -> 28 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}
