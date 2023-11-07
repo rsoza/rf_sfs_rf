@@ -33,6 +33,7 @@ class RFModel:
 
     def finalRF(self):
         X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=42)
+        self.__jobLib()
         self.rf.fit(X_train, y_train)
         y_pred = self.rf.predict(X_test)
 
@@ -43,8 +44,7 @@ class RFModel:
         print(confusion)
         print('Classification Report:')
         print(classification_report(y_test, y_pred))
-        self.__jobLib()
-
+    
     def __cleaning(self):
         self.dataset = self.dataset.sample(n=100)
         self.dataset = self.dataset.dropna()
@@ -95,6 +95,8 @@ class RFModel:
         selected_feature_indices = sfs.get_support(indices=True)
         final_selected_features = self.X.columns[selected_feature_indices]
         self.dataset = self.dataset[final_selected_features]
+        joblib.dump(final_selected_features, "./featureSelection.pkl")
+        
         print('Step 5: FS', final_selected_features, final_selected_features.shape)
 
         # y_pred = self.rf.predict(X_test)
@@ -118,8 +120,7 @@ class RFModel:
         plt.show()
 
     def __jobLib(self):
-        joblib.dump(self.rf, "./randomForest.pkl")
-        load_rf = joblib.load("./randomForest.pkl")
+        load_rf = joblib.load("./featureSelection.pkl")
         load_rf.predict(self.X)
 
     def __stats(self, y_test, y_pred):
@@ -152,6 +153,7 @@ def main():
     data = pd.read_csv('./TER20.csv')
     rf = RFModel(data)
     rf.dataPreprocessing()
-    rf.finalRF()
+    # rf.finalRF()
+
 
 main()
